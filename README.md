@@ -3,25 +3,23 @@
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C.svg)](https://pytorch.org/)
 [![Model Parameters](https://img.shields.io/badge/Parametre-81.17M-green.svg)](#model-mimarisi)
+[![Hugging Face](https://img.shields.io/badge/🤗_Hugging_Face-Model_Ağırlıkları-FFD21E.svg)](https://huggingface.co/aapo33/cores-ai-tr-v1.0.0-85m)
 [![Vocab Size](https://img.shields.io/badge/Vocab-50%2C000-orange.svg)](#tokenizer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Cores-AI TR**, tamamen Türkçe korpuslar üzerinde **sıfırdan (from scratch)** eğitilmiş, açık kaynaklı ve hafif siklet (81.17M parametre) bir Türkçe Üretken Dil Modelidir (GPT).
 
-Bu depo; model mimarisini, özel Türkçe BPE tokenizer'ı, veri hazırlama ve ön eğitim (pre-training) betiklerini, ayrıca Google Colab T4 üzerinde yapılan 5.000 adımlık Faz A test eğitiminin sonuçlarını ve metriklerini içerir.
+Bu depo; model mimarisini, özel Türkçe BPE tokenizer'ı, veri hazırlama ve ön eğitim (pre-training) betiklerini, ayrıca Google Colab T4 üzerinde yapılan eğitimin sonuçlarını ve metriklerini içerir.
 
 ---
 
-## 📌 İçindekiler
-- [Model Mimarisi](#-model-mimarisi)
-- [Eğitim Detayları ve Metrikler](#-e%C4%9Fitim-detaylar%C4%B1-ve-metrikler)
-- [Örnek Test Çıktıları](#-örnek-test-çıktıları)
-- [Kurulum](#-kurulum)
-- [Modeli Kullanma (Inference)](#-modeli-kullanma-inference)
-- [Kendi Modelini Eğitme](#-kendi-modelini-e%C4%9Fitme)
-- [Depo Yapısı](#-depo-yap%C4%B1s%C4%B1)
-- [Yol Haritası (Roadmap)](#-yol-haritas%C4%B1-roadmap)
-- [Lisans](#-lisans)
+## 🔗 Model Ağırlıklarını İndirme (Hugging Face)
+
+Model ağırlıkları boyutu nedeniyle (978 MB) GitHub'da tutulmamaktadır. Ağırlık dosyasını (`ckpt.pt`) aşağıdaki Hugging Face bağlantısından indirebilirsiniz:
+
+👉 **[Cores-AI-TR-85M Hugging Face Sayfası](https://huggingface.co/aapo33/cores-ai-tr-v1.0.0-85m)**
+
+*İndirdiğiniz `ckpt.pt` dosyasını projeyi klonladıktan sonra `out-cores-85m-test/` klasörünün içine yerleştirmeniz gerekmektedir.*
 
 ---
 
@@ -50,7 +48,7 @@ Cores-AI TR, modern Decoder-only Transformer mimarisine dayanmaktadır:
 
 ## 📊 Eğitim Detayları ve Metrikler
 
-Faz A aşamasında model mimarisi, tokenizer ve veri akışı hattının doğrulanması amacıyla 5.000 adımlık hızlı eğitim gerçekleştirilmiştir.
+Model mimarisi, tokenizer ve veri akışı hattının doğrulanması amacıyla 5.000 adımlık eğitim gerçekleştirilmiştir.
 
 ### Eğitim Donanımı ve Parametreleri
 - **Donanım**: Google Colab NVIDIA Tesla T4 (16 GB VRAM)
@@ -98,24 +96,20 @@ Aşağıdaki örnekler, `sample_tr.py` betiği ile modelin gerçek ağırlıklar
 
 ---
 
-## 🚀 Kurulum
+## 🚀 Kurulum ve Modeli Kullanma (Inference)
 
-### 1. Depoyu İndirin
+### 1. Depoyu İndirin ve Bağımlılıkları Kurun
 ```bash
 git clone https://github.com/KULLANICI_ADINIZ/Cores-AI-TR-85M.git
 cd Cores-AI-TR-85M
-```
-
-### 2. Bağımlılıkları Yükleyin
-```bash
 pip install -r requirements.txt
 ```
 
----
+### 2. Ağırlıkları Yerleştirin
+[Hugging Face deposundan](https://huggingface.co/aapo33/cores-ai-tr-v1.0.0-85m) `ckpt.pt` dosyasını indirin ve proje içerisindeki `out-cores-85m-test/` klasörüne (eğer klasör yoksa oluşturup içine) ekleyin.
 
-## 💻 Modeli Kullanma (Inference)
-
-Eğitilmiş model ağırlık dosyasını (`ckpt.pt`) `out-cores-85m-test/` klasörü altına yerleştirdikten sonra aşağıdaki komutla dilediğiniz prompt üzerinden Türkçe metin üretebilirsiniz:
+### 3. Metin Üretimi (Inference)
+Ağırlıklar yerleştirildikten sonra modeli aşağıdaki komutla test edebilirsiniz:
 
 ```bash
 python sample_tr.py \
@@ -129,7 +123,7 @@ python sample_tr.py \
     --device cuda
 ```
 
-*GPU yoksa `--device cpu` parametresini kullanabilirsiniz.*
+*GPU yoksa komutun sonundaki `--device cuda` kısmını `--device cpu` olarak değiştirebilirsiniz.*
 
 ---
 
@@ -155,8 +149,7 @@ python sample_tr.py \
 │   ├── ogrenme_verisi.txt    # 5.000 adımlık tam eğitim logu ve loss değerleri
 │   └── prompt_testi.txt      # Farklı promptlarla üretilen ham metin çıktıları
 ├── config/                   # Model konfigürasyonları
-│   ├── train_cores_85m_test.py  # 85M test modeli konfigürasyonu
-│   └── train_cores_152m.py      # 152M hedef modeli konfigürasyonu
+│   └── train_cores_85m_test.py  # 85M model konfigürasyonu
 ├── configurator.py           # Komut satırından konfigürasyon override mekanizması
 ├── model.py                  # GPT / Decoder Transformer mimari tanımı
 ├── prepare_tr.py             # Hugging Face verilerini işleyip binary'e çeviren betik
@@ -172,17 +165,15 @@ python sample_tr.py \
 
 ## 🗺️ Yol Haritası (Roadmap)
 
-- [x] **Faz A: Pipeline & Mimari Doğrulama**
+- [x] **Temel Model Eğitimi**
   - [x] Özel Türkçe BPE Tokenizer (50k) oluşturulması
-  - [x] 85M parametreli modelin Colab T4 üzerinde test eğitimi
-  - [x] Kaybın 10.93'ten 2.84'e düşürülmesi ve temel anlamsal çıktılar
-- [ ] **Faz B: 152M Asıl Model Eğitimi**
-  - [ ] 16 Katman, 768 Gömme boyutu (`config/train_cores_152m.py`)
-  - [ ] ~3 Milyar tokenlik genişletilmiş korpus eğitimi
-  - [ ] Gradient Checkpointing ile VRAM optimizasyonu
-- [ ] **Faz C: Hizalama ve İnce Ayar (Alignment & SFT)**
+  - [x] 85M parametreli modelin sıfırdan eğitimi
+  - [x] Kaybın 10.93'ten 2.84'e düşürülmesi
+- [ ] **Hizalama ve İnce Ayar (Alignment & SFT)**
   - [ ] Türkçe komut ve diyalog setleriyle (Instruction Tuning) ince ayar
   - [ ] Web arayüzü (Gradio / Streamlit) entegrasyonu
+- [ ] **Veri Zenginleştirme**
+  - [ ] Daha kapsamlı veri setleri ile modelin matematik/mantık yeteneklerinin artırılması
 
 ---
 
