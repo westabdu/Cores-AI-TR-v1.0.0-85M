@@ -7,6 +7,12 @@
 [![Vocab Size](https://img.shields.io/badge/Vocab-50%2C000-orange.svg)](#tokenizer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+> [!IMPORTANT]
+> **📢 ÖNEMLİ BİLGİLENDİRME (BASE MODEL & SFT SÜRECİ):**
+> - **Bu model bir Base Model'dir (Ön Eğitim / Ham Dil Modeli):** Model bu aşamada doğrudan bir sohbet asistanı (ChatGPT tarzı soru-cevap) değil, verilen metni devam ettiren ham bir metin tamamlama modelidir.
+> - **Kapsamlı Testler & SFT Eğitimi:** Model üzerinde henüz nihai/kapsamlı testler tamamlanmamıştır. Modelin komut takip edebilmesi ve sağlıklı sohbet edebilmesi için **SFT (Supervised Fine-Tuning)** verileri indirilmiş olup şu anda ince ayar (fine-tuning) eğitimi devam etmektedir.
+> - **Ayrı Repo Duyurusu:** SFT (tam model) eğitimi tamamlandığında, karışıklık olmaması adına onun için **ayrı bir repo açılacak** ve bağlantısı buradan da paylaşılacaktır.
+
 **Cores-AI TR**, tamamen Türkçe korpuslar üzerinde **sıfırdan (from scratch)** eğitilmiş, açık kaynaklı ve hafif siklet (81.17M parametre) bir Türkçe Üretken Dil Modelidir (GPT).
 
 Bu depo; model mimarisini, özel Türkçe BPE tokenizer'ı, veri hazırlama ve ön eğitim (pre-training) betiklerini, ayrıca Google Colab T4 üzerinde yapılan eğitimin sonuçlarını ve metriklerini içerir.
