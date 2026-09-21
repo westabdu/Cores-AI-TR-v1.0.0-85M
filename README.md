@@ -7,11 +7,12 @@
 [![Vocab Size](https://img.shields.io/badge/Vocab-50%2C000-orange.svg)](#tokenizer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> [!IMPORTANT]
-> **📢 ÖNEMLİ BİLGİLENDİRME (BASE MODEL & SFT SÜRECİ):**
-> - **Bu model bir Base Model'dir (Ön Eğitim / Ham Dil Modeli):** Model bu aşamada doğrudan bir sohbet asistanı (ChatGPT tarzı soru-cevap) değil, verilen metni devam ettiren ham bir metin tamamlama modelidir.
-> - **Kapsamlı Testler & SFT Eğitimi:** Model üzerinde henüz nihai/kapsamlı testler tamamlanmamıştır. Modelin komut takip edebilmesi ve sağlıklı sohbet edebilmesi için **SFT (Supervised Fine-Tuning)** verileri indirilmiş olup şu anda ince ayar (fine-tuning) eğitimi devam etmektedir.
-> - **Ayrı Repo Duyurusu:** SFT (tam model) eğitimi tamamlandığında, karışıklık olmaması adına onun için **ayrı bir repo açılacak** ve bağlantısı buradan da paylaşılacaktır.
+> [!NOTE]
+> **📢 GÜNCELLEME VE BİLGİLENDİRME (BASE MODEL & GELECEK PLANLARI):**
+> - **Bu Model Base Model'dir:** Bu depo içerisindeki Cores-AI TR 85M modeli saf bir **Base Model** (ön eğitim / ham metin tamamlama modeli) olarak kalacaktır.
+> - **SFT Durumu:** Bu model üzerinde şahsen SFT (Supervised Fine-Tuning) eğitimi gerçekleştirmeyi denedim; ancak 85M ölçeğindeki bu model beklediğim ve istediğim kıvama/performansa ulaşamadı. Bu nedenle şahsen **bu model için ek bir SFT (sohbet) eğitimi yapmayacağım.**
+> - **Tamamen Açık Kaynak:** Kodlar ve ağırlıklar tamamen açık kaynaktır! İstediğiniz gibi mimariyi inceleyebilir, kodu geliştirebilir ve kendi SFT/fine-tuning denemelerinizi yapabilirsiniz.
+> - **🚀 Yeni Modeller Geliyor:** Şu anda daha gelişmiş yeni modeller üzerinde aktif olarak çalışıyorum. Aklımda/geliştirme sürecinde **2 yeni model** var; bunlardan **1 tanesi hazırlandı, geriye yalnızca SFT eğitimi kaldı.** Yeni modelleri çok yakında ayrı projeler/repolar olarak duyuracağım, takipte kalın!
 
 **Cores-AI TR**, tamamen Türkçe korpuslar üzerinde **sıfırdan (from scratch)** eğitilmiş, açık kaynaklı ve hafif siklet (81.17M parametre) bir Türkçe Üretken Dil Modelidir (GPT).
 
@@ -175,11 +176,11 @@ python sample_tr.py \
   - [x] Özel Türkçe BPE Tokenizer (50k) oluşturulması
   - [x] 85M parametreli modelin sıfırdan eğitimi
   - [x] Kaybın 10.93'ten 2.84'e düşürülmesi
-- [ ] **Hizalama ve İnce Ayar (Alignment & SFT)**
-  - [ ] Türkçe komut ve diyalog setleriyle (Instruction Tuning) ince ayar
-  - [ ] Web arayüzü (Gradio / Streamlit) entegrasyonu
-- [ ] **Veri Zenginleştirme**
-  - [ ] Daha kapsamlı veri setleri ile modelin matematik/mantık yeteneklerinin artırılması
+- [ ] **Yeni Nesil Modeller & SFT**
+  - [ ] Yeni yüksek parametreli modellerin eğitimi (1 model hazır, SFT aşamasında)
+  - [ ] Yeni modeller için ayrı repo açılması ve duyurulması
+- [ ] **Topluluk ve Açık Kaynak**
+  - [ ] 85M Base model üzerinde topluluk fine-tuning çalışmalarına açık kaynak desteği
 
 ---
 
